@@ -26,11 +26,17 @@ public class Menu extends SDecorator {
     public void reloadUI() {
         UIFrameManager frameManager = main.gui();
 
-        setMainPanel(SContainer.row(
-                new SFiller(),
-                new SPanel(SContainer.column(
-                        new SFiller(0, SPACE_BETWEEN_UI_SECTIONS).setGrowthPolicy(false, false)))
-                        .setGrowthPolicy(false, true)));
+        setMainPanel(
+                SContainer.row(
+                        new SFiller(),
+                        new SPanel(
+                                SContainer.column(
+                                        new SFiller(0, SPACE_BETWEEN_UI_SECTIONS).setGrowthPolicy(false, false)
+                                )
+                        )
+                                .setGrowthPolicy(false, true)
+                )
+        );
     }
 
     private void openFileDialog(Consumer<File> action, String extension) {
