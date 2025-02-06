@@ -29,12 +29,10 @@ public class MouseToolCallbacks implements ToolElement {
 
     @Override
     public void init(Main root) {
-        if (this.root != null)
-            return;
+        if (this.root != null) return;
         this.root = root;
 
-        DEFAULT_MOUSE_TOOL = new MouseTool(root.gui(), root.window(), root.inputHandling()) {
-        };
+        DEFAULT_MOUSE_TOOL = new MouseTool(root.gui(), root.window(), root.inputHandling()) {};
         currentTool = DEFAULT_MOUSE_TOOL;
 
         GLFWWindow target = root.window();
@@ -57,8 +55,7 @@ public class MouseToolCallbacks implements ToolElement {
         MouseTool newTool = (tool != null) ? tool : DEFAULT_MOUSE_TOOL;
 
         if (!currentTool.equals(newTool)) {
-            if (currentTool != DEFAULT_MOUSE_TOOL)
-                currentTool.dispose();
+            if (currentTool != DEFAULT_MOUSE_TOOL) currentTool.dispose();
             currentTool = newTool;
             Logger.DEBUG.print("Set mousetool to " + newTool);
         }
@@ -89,8 +86,8 @@ public class MouseToolCallbacks implements ToolElement {
     private class KeyPressCallback extends GLFWKeyCallback {
         @Override
         public void invoke(long window, int keyCode, int scanCode, int action, int mods) {
-            if (keyCode < 0)
-                return;
+            if (keyCode < 0) return;
+
             if (action == GLFW_PRESS) {
                 execute(() -> keyControl.keyPressed(keyCode));
 

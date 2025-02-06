@@ -13,8 +13,7 @@ import org.joml.Vector2i;
  * @author Geert van Ieperen created on 24-4-2020.
  */
 public abstract class MouseTool implements MouseListener {
-    private MouseReleaseListener releaseListener = (b) -> {
-    };
+    private MouseReleaseListener releaseListener = (b) -> {};
     private Runnable onCancel = null;
 
     private UIFrameManager gui;
@@ -78,13 +77,11 @@ public abstract class MouseTool implements MouseListener {
     @Override
     public final void onMouseMove(int xDelta, int yDelta, float xPos, float yPos) {
         gui.onMouseMove(xDelta, yDelta, xPos, yPos);
-        if (gui.covers((int) xPos, (int) yPos))
-            return;
+        if (gui.covers((int) xPos, (int) yPos)) return;
     }
 
     /**
      * activates when this mousetool is deactivated
      */
-    public void dispose() {
-    }
+    public void dispose() {}
 }

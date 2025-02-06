@@ -13,9 +13,6 @@ import NG.Rendering.RenderLoop;
 import NG.Settings.Settings;
 import NG.Tools.Logger;
 import NG.Tools.Vectors;
-import java.util.concurrent.Callable;
-import java.util.concurrent.Future;
-import java.util.concurrent.FutureTask;
 
 /**
  * A tool for visualising large graphs
