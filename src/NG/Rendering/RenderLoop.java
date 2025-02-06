@@ -89,9 +89,6 @@ public class RenderLoop extends AbstractGameLoop implements ToolElement {
             return;
         }
 
-        // camera
-        root.camera().updatePosition(deltaTime); // real-time deltatime
-
         // restore window state
         glEnable(GL_DEPTH_TEST);
 

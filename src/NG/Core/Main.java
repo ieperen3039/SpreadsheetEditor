@@ -15,8 +15,6 @@ public interface Main {
 
     public Version getVersionNumber();
 
-    public Camera camera();
-
     public Settings settings();
 
     public GLFWWindow window();
@@ -26,8 +24,6 @@ public interface Main {
     public KeyControl keyControl();
 
     public UIFrameManager gui();
-
-    
 
     /**
      * Schedules the specified action to be executed in the OpenGL context. The

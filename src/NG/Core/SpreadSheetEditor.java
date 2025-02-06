@@ -77,7 +77,6 @@ public class SpreadSheetEditor implements Main {
         renderer.init(this);
         inputHandler.init(this);
         frameManager.init(this);
-        camera.init(this);
 
         renderer.addHudItem(frameManager::draw);
 

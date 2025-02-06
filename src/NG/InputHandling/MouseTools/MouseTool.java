@@ -1,58 +1,50 @@
 package NG.InputHandling.MouseTools;
 
-import NG.Camera.Camera;
-import NG.Core.Main;
 import NG.GUIMenu.Components.SToggleButton;
 import NG.GUIMenu.FrameManagers.UIFrameManager;
 import NG.GUIMenu.SComponentProperties;
 import NG.InputHandling.MouseListener;
 import NG.InputHandling.MouseReleaseListener;
+import NG.Rendering.GLFWWindow;
+
 import org.joml.Vector2i;
-import org.lwjgl.glfw.GLFW;
 
 /**
  * @author Geert van Ieperen created on 24-4-2020.
  */
 public abstract class MouseTool implements MouseListener {
-    protected Main root;
-
-    private MouseReleaseListener releaseListener;
+    private MouseReleaseListener releaseListener = (b) -> {
+    };
     private Runnable onCancel = null;
 
-    public MouseTool(Main root) {
-        this.root = root;
-        releaseListener = root.camera();
+    private UIFrameManager gui;
+    private GLFWWindow window;
+    private MouseToolCallbacks inputHandling;
+
+    public MouseTool(UIFrameManager gui, GLFWWindow window, MouseToolCallbacks inputHandling) {
+        this.gui = gui;
+        this.window = window;
+        this.inputHandling = inputHandling;
     }
 
     public SToggleButton button(String buttonText, SComponentProperties properties) {
         SToggleButton button = new SToggleButton(buttonText, properties);
-        button.addStateChangeListener(on -> root.inputHandling().setMouseTool(on ? this : null));
+        button.addStateChangeListener(on -> inputHandling.setMouseTool(on ? this : null));
         onCancel = () -> button.setActive(false);
         return button;
     }
 
     @Override
     public void onClick(int button, int x, int y) {
-        if (root.gui().checkMouseClick(button, x, y)) {
-            releaseListener = root.gui();
+        if (gui.checkMouseClick(button, x, y)) {
+            releaseListener = gui;
             return;
         }
-    }
-
-    protected void onAirClick(int button, int x, int y) {
-        if (button == GLFW.GLFW_MOUSE_BUTTON_RIGHT && onCancel != null) {
-            disableThis();
-            return;
-        }
-
-        Camera camera = root.camera();
-        camera.onClick(button, x, y);
-        releaseListener = camera;
     }
 
     public void disableThis() {
         if (onCancel == null) {
-            root.inputHandling().setMouseTool(null);
+            inputHandling.setMouseTool(null);
 
         } else {
             onCancel.run();
@@ -70,16 +62,12 @@ public abstract class MouseTool implements MouseListener {
 
     @Override
     public void onScroll(float value) {
-        Vector2i pos = root.window().getMousePosition();
-        UIFrameManager gui = root.gui();
+        Vector2i pos = window.getMousePosition();
 
         if (gui.covers(pos.x, pos.y)) {
             gui.onScroll(value);
             return;
         }
-
-        // camera
-        root.camera().onScroll(value);
     }
 
     @Override
@@ -89,10 +77,9 @@ public abstract class MouseTool implements MouseListener {
 
     @Override
     public final void onMouseMove(int xDelta, int yDelta, float xPos, float yPos) {
-        root.gui().onMouseMove(xDelta, yDelta, xPos, yPos);
-        if (root.gui().covers((int) xPos, (int) yPos)) return;
-
-        root.camera().onMouseMove(xDelta, yDelta, xPos, yPos);
+        gui.onMouseMove(xDelta, yDelta, xPos, yPos);
+        if (gui.covers((int) xPos, (int) yPos))
+            return;
     }
 
     /**
