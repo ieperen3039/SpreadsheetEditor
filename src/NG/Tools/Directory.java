@@ -12,8 +12,7 @@ import java.nio.file.Paths;
  */
 public enum Directory {
     shaders(true, "res", "shaders"),
-    fonts(true, "res", "fonts"),
-    graphs(false, "graphs");
+    fonts(true, "res", "fonts");
 
     private final Path directory; // relative path
     private static Path workingDirectory = null;

@@ -1,38 +1,21 @@
 package NG.Core;
 
 import NG.Camera.Camera;
-import NG.Camera.FlatCamera;
 import NG.Camera.PointCenteredCamera;
 import NG.DataStructures.Generic.Color4f;
-import NG.GUIMenu.Components.STextArea;
-import NG.GUIMenu.Components.SToggleButton;
 import NG.GUIMenu.FrameManagers.FrameManagerImpl;
 import NG.GUIMenu.FrameManagers.UIFrameManager;
 import NG.GUIMenu.Menu;
-import NG.GUIMenu.Rendering.NGFonts;
-import NG.GUIMenu.Rendering.NVGOverlay;
-import NG.GUIMenu.Rendering.SFrameLookAndFeel;
 import NG.InputHandling.KeyControl;
 import NG.InputHandling.MouseTools.MouseToolCallbacks;
 import NG.Rendering.GLFWWindow;
 import NG.Rendering.RenderLoop;
 import NG.Settings.Settings;
 import NG.Tools.Logger;
-import NG.Tools.Toolbox;
 import NG.Tools.Vectors;
-import org.joml.Matrix4f;
-import org.joml.Vector2i;
-import org.joml.Vector3f;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
-import java.util.function.Consumer;
-import static org.lwjgl.opengl.GL11.glDepthMask;
 
 /**
  * A tool for visualising large graphs

@@ -44,31 +44,6 @@ public class Boot {
                         "Activates logging of underlying libraries")
                 .addFlag("untimed", () -> Logger.doPrintTimeStamps = false,
                         "Removes timestamps from logging")
-                .addFlag("loopTimingOverlay", () -> settings.PRINT_ROLL = true,
-                        "Display real-time timing results in the graph area")
-                .addFlag("enableRenderTiming", () -> settings.ACCURATE_RENDER_TIMING = true,
-                        "enable measuring the runtime of the rendering procedure")
-                .addFlag("advancedDragging", () -> settings.ADVANCED_MANIPULATION = true,
-                        "Activates an experimental dragging mode. " +
-                                "This mode pulls the neighbours of targeted nodes along"
-                )
-                .addFlag("randomLayout", () -> settings.RANDOM_LAYOUT = true,
-                        "Layout will be initialized at random, rather than using HDE")
-
-                .addParameterFlag("maxIterationsPerSecond",
-                        s -> settings.MAX_ITERATIONS_PER_SECOND = Integer.parseInt(s),
-                        "Maximum iterations executed each second by the layout algorithm. " +
-                                "default = " + settings.MAX_ITERATIONS_PER_SECOND
-                )
-                .addParameterFlag("numWorkerThreads",
-                        s -> settings.NUM_WORKER_THREADS = Integer.parseInt(s),
-                        "Number of worker threads used to parallelize the layout algorithm. " +
-                                "default = " + settings.NUM_WORKER_THREADS
-                )
-                .addParameterFlag("startAutoTester",
-                        s -> settings.DATA_COLLECTION_PATH = Paths.get(s),
-                        "Run an automatic layout speed data generation on the graphs of the given path, then quit")
-
                 .parse(args);
 
         new Main(settings).root();

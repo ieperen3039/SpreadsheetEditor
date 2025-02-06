@@ -3,11 +3,12 @@ package NG.Settings;
 import java.nio.file.Path;
 
 /**
- * A class that collects a number of settings. It is the only class whose fields are always initialized upon creation.
+ * A class that collects a number of settings.
+ * 
  * @author Geert van Ieperen. Created on 13-9-2018.
  */
 public class Settings {
-    public static final String TITLE = "LTS Graph Explorer";
+    public static final String TITLE = "Ieperen's Silly Spreadsheet Editor";
 
     // video settings
     public int TARGET_FPS = 60;
