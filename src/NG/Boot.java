@@ -1,6 +1,7 @@
 package NG;
 
 import NG.Core.Main;
+import NG.Core.SpreadSheetEditor;
 import NG.Settings.Settings;
 import NG.Tools.Logger;
 import org.lwjgl.system.Configuration;
@@ -46,6 +47,6 @@ public class Boot {
                         "Removes timestamps from logging")
                 .parse(args);
 
-        new Main(settings).root();
+        new SpreadSheetEditor(settings).root();
     }
 }
