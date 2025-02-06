@@ -2,7 +2,6 @@ package NG.Core;
 
 import NG.Camera.Camera;
 import NG.Camera.PointCenteredCamera;
-import NG.DataStructures.Generic.Color4f;
 import NG.GUIMenu.FrameManagers.FrameManagerImpl;
 import NG.GUIMenu.FrameManagers.UIFrameManager;
 import NG.GUIMenu.Menu;
@@ -20,14 +19,6 @@ import NG.Tools.Vectors;
  * @author Geert van Ieperen. Created on 13-9-2018.
  */
 public class SpreadSheetEditor implements Main {
-    public static final Color4f HOVER_COLOR = Color4f.rgb(44, 58, 190); // blue
-    public static final Color4f PATH_COLOR = Color4f.rgb(200, 83, 0); // orange
-    public static final Color4f INITAL_STATE_COLOR = Color4f.rgb(4, 150, 13); // green
-
-    public static final Color4f MU_FORMULA_COLOR = Color4f.rgb(220, 150, 0); // yellow
-    public static final Color4f MU_FORMULA_UNREACHABLE = Color4f.rgb(200, 0, 0, 0.8f); // red
-    public static final Color4f MU_FORMULA_UNAVOIDABLE = Color4f.rgb(0, 100, 0, 0.8f); // green
-
     private static final Version VERSION = new Version(0, 3);
 
     private final Thread mainThread;
@@ -49,7 +40,7 @@ public class SpreadSheetEditor implements Main {
                 + "\n\tSystem OS:          " + System.getProperty("os.name")
                 + "\n\tJava VM:            " + System.getProperty("java.runtime.version")
                 + "\n\tTool version:       " + getVersionNumber()
-                + "\n\tNumber of workers:  " + settings.NUM_WORKER_THREADS);
+        );
 
         this.settings = settings;
         GLFWWindow.Settings videoSettings = new GLFWWindow.Settings(settings);
